@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_financy_app/common/constants/app_colors.dart';
-import 'package:flutter_financy_app/common/constants/app_text_styles.dart';
+import 'package:flutter_financy_app/app/common/constants/app_colors.dart';
+import 'package:flutter_financy_app/app/common/constants/app_text_styles.dart';
 
 class PrimaryButton extends StatelessWidget {
   PrimaryButton({
@@ -8,16 +8,18 @@ class PrimaryButton extends StatelessWidget {
     this.onPressed,
     required this.text,
   }) : super(key: key);
-  final BorderRadius _borderRadius = BorderRadius.circular(40);
+  final BorderRadius _borderRadius = BorderRadius.circular(48);
   final VoidCallback? onPressed;
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return Material(
+      elevation: 10,
+      shadowColor: Colors.black,
       borderRadius: _borderRadius,
       child: Ink(
-        height: 64,
+        height: 48,
         width: MediaQuery.of(context).size.width * .75,
         decoration: BoxDecoration(
           borderRadius: _borderRadius,
@@ -35,7 +37,9 @@ class PrimaryButton extends StatelessWidget {
           child: Align(
             child: Text(
               text,
-              style: AppTextStyles.mediumText18.apply(color: AppColors.white),
+              style: AppTextStyles.mediumText18.apply(
+                color: AppColors.white,
+              ),
             ),
           ),
         ),

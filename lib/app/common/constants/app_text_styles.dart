@@ -23,4 +23,15 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     fontFamily: 'Inter',
   );
+  static const TextStyle inputLabelText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
+  static const TextStyle errorText = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
+
 }
