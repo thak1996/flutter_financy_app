@@ -15,7 +15,7 @@ class AuthenticationModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => const SplashPage()),
-    ChildRoute('/signUpPage/', child: (_, args) => SignUpPage()),
+    ChildRoute('/signUpPage/', child: (_, args) => const SignUpPage()),
     ChildRoute('/onBoardingPage/', child: (_, args) => OnBoardingPage()),
   ];
 }

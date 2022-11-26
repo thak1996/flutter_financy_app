@@ -24,6 +24,7 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.helperStyle,
     this.suffixIcon,
+    this.obscureText,
   }) : super(key: key);
   final EdgeInsets? padding;
   final String? hintText;
@@ -42,6 +43,7 @@ class CustomTextFormField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final TextStyle? helperStyle;
   final Widget? suffixIcon;
+  final bool? obscureText;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -63,12 +65,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             vertical: 16,
           ),
       child: TextFormField(
+        obscureText: widget.obscureText ?? false,
         validator: widget.validator,
         keyboardAppearance: widget.keyboardAppearance ?? Brightness.light,
         style: widget.style ??
             AppTextStyles.smallText.apply(color: AppColors.greelightTwo),
         textInputAction: widget.textInputAction ?? TextInputAction.none,
-        maxLines: widget.maxLines,
+        maxLines: widget.maxLines ?? 1,
         maxLength: widget.maxLength,
         controller: widget.controller,
         textCapitalization:
