@@ -22,10 +22,10 @@ class PasswordFormField extends StatefulWidget {
   final String? hintText;
   final String? labelText;
   final TextInputType? textInputType;
+  final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final FormFieldValidator<String>? validator;
   final String? helperText;
-  final TextInputType? keyboardType;
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();
@@ -50,7 +50,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
         borderRadius: BorderRadius.circular(23),
         child: Icon(
           isHidden ? Icons.visibility : Icons.visibility_off,
-          color: AppColors.greelightTwo,
+          color: AppColors.greenTwo,
         ),
       ),
     );

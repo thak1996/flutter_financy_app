@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_financy_app/app/common/constants/app_colors.dart';
 import 'package:flutter_financy_app/app/common/constants/app_text_styles.dart';
+import 'package:flutter_financy_app/app/common/utils/uppercase_text_formatter.dart';
+import 'package:flutter_financy_app/app/common/utils/validator.dart';
 import 'package:flutter_financy_app/app/common/widgets/custom_text_form_field.dart';
 import 'package:flutter_financy_app/app/common/widgets/multi_text_button.dart';
 import 'package:flutter_financy_app/app/common/widgets/password_form_field.dart';
@@ -18,7 +20,18 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final SignUpStore store = Modular.get<SignUpStore>();
-  final GlobalKey<FormState> key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: ListView(
         children: [
           _headerSingUp(),
-          _bodySingUp(key: key),
+          _bodySingUp(key: _key),
         ],
       ),
     );
@@ -43,7 +56,7 @@ Padding _headerSingUp() {
           textAlign: TextAlign.center,
           'Start Saving\nYour Money!',
           style: AppTextStyles.mediumText.apply(
-            color: AppColors.greelightTwo,
+            color: AppColors.greenTwo,
           ),
         ),
         const SizedBox(height: 20),
@@ -64,19 +77,29 @@ Form _bodySingUp({required GlobalKey<FormState> key}) {
           labelText: 'your name',
           keyboardType: TextInputType.name,
           enableSuggestions: true,
+          inputFormatters: [UpperCaseTextInputFormatter()],
+          hintText: 'JOHN DOE',
+          validator: Validator.validateName,
         ),
-        CustomTextFormField(
+        const CustomTextFormField(
           labelText: 'your email',
           keyboardType: TextInputType.emailAddress,
           enableSuggestions: true,
+          hintText: 'email@email.com',
+          validator: Validator.validateEmail,
         ),
-        PasswordFormField(
+        const PasswordFormField(
           labelText: 'choose your password',
           keyboardType: TextInputType.visiblePassword,
+          hintText: '***********',
+          helperText:
+              'Must have at least 8 characters, 1 capital letter and 1 number.',
+          validator: Validator.validatePassword,
         ),
-        PasswordFormField(
+        const PasswordFormField(
           labelText: 'confirm your password',
           keyboardType: TextInputType.visiblePassword,
+          hintText: '***********',
         ),
         PrimaryButton(
           padding: const EdgeInsets.only(top: 30, bottom: 10),

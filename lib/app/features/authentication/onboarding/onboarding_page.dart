@@ -61,7 +61,7 @@ Container _infosOnboarding({required BuildContext context}) {
             Text(
               'Sign In',
               style: AppTextStyles.smallText.apply(
-                color: AppColors.greelightTwo,
+                color: AppColors.greenTwo,
               ),
             ),
           ],
@@ -76,7 +76,7 @@ Text _textTitle() {
     textAlign: TextAlign.center,
     'Spend Smater \n Save More',
     style: AppTextStyles.mediumText.apply(
-      color: AppColors.greelightTwo,
+      color: AppColors.greenTwo,
     ),
   );
 }

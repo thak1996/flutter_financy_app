@@ -13,6 +13,7 @@ dependencies:
   material_design_icons_flutter: ^6.0.7096
   mobx: ^2.1.1
   flutter_mobx: ^2.0.6+4
+  validators: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

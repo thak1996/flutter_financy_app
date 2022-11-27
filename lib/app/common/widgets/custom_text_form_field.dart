@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_financy_app/app/common/constants/app_colors.dart';
 import 'package:flutter_financy_app/app/common/constants/app_text_styles.dart';
@@ -25,6 +26,7 @@ class CustomTextFormField extends StatefulWidget {
     this.helperStyle,
     this.suffixIcon,
     this.obscureText,
+    this.inputFormatters,
   }) : super(key: key);
   final EdgeInsets? padding;
   final String? hintText;
@@ -44,6 +46,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextStyle? helperStyle;
   final Widget? suffixIcon;
   final bool? obscureText;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -52,7 +55,7 @@ class CustomTextFormField extends StatefulWidget {
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   final defaultBorder = const OutlineInputBorder(
     borderSide: BorderSide(
-      color: AppColors.greelightTwo,
+      color: AppColors.greenTwo,
       width: 1.4,
     ),
   );
@@ -65,11 +68,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             vertical: 16,
           ),
       child: TextFormField(
+        inputFormatters: widget.inputFormatters,
         obscureText: widget.obscureText ?? false,
         validator: widget.validator,
         keyboardAppearance: widget.keyboardAppearance ?? Brightness.light,
         style: widget.style ??
-            AppTextStyles.smallText.apply(color: AppColors.greelightTwo),
+            AppTextStyles.smallText.apply(color: AppColors.greenTwo),
         textInputAction: widget.textInputAction ?? TextInputAction.none,
         maxLines: widget.maxLines ?? 1,
         maxLength: widget.maxLength,
@@ -82,21 +86,21 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           suffixIcon: widget.suffixIcon,
           helperText: widget.helperText,
           helperStyle: widget.helperStyle ??
-              AppTextStyles.inputLabelText.apply(
-                color: AppColors.greelightOne,
+              AppTextStyles.inputText.apply(
+                color: AppColors.greenOne,
               ),
           labelText: widget.labelText?.toUpperCase(),
-          floatingLabelStyle: AppTextStyles.inputLabelText.apply(
+          floatingLabelStyle: AppTextStyles.inputText.apply(
             color: AppColors.darkGrey,
           ),
-          labelStyle: AppTextStyles.inputLabelText.apply(
+          labelStyle: AppTextStyles.inputText.apply(
             color: AppColors.darkGrey,
           ),
           floatingLabelBehavior:
               widget.floatingLabelBehavior ?? FloatingLabelBehavior.always,
           hintText: widget.hintText,
           focusedBorder: defaultBorder,
-          errorStyle: AppTextStyles.errorText.apply(color: Colors.red),
+          errorStyle: AppTextStyles.inputHintText.apply(color: Colors.red),
           errorBorder: defaultBorder.copyWith(
             borderSide: const BorderSide(color: Colors.red),
           ),
