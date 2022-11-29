@@ -8,7 +8,7 @@ import 'package:flutter_financy_app/app/common/widgets/custom_text_form_field.da
 import 'package:flutter_financy_app/app/common/widgets/multi_text_button.dart';
 import 'package:flutter_financy_app/app/common/widgets/password_form_field.dart';
 import 'package:flutter_financy_app/app/common/widgets/primary_button.dart';
-import 'package:flutter_financy_app/app/features/authentication/sign_up/sign_up_store.dart';
+import 'package:flutter_financy_app/app/view/authentication/sign_up/sign_up_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class SignUpPage extends StatefulWidget {
