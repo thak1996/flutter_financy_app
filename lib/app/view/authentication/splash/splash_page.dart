@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_financy_app/app/common/constants/app_colors.dart';
 import 'package:flutter_financy_app/app/common/constants/app_text_styles.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -11,16 +10,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(
-      const Duration(seconds: 0),
-    ).then(
-      (value) => Modular.to.navigate('/signUpPage/'),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

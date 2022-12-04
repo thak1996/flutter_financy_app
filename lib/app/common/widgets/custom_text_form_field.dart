@@ -27,6 +27,8 @@ class CustomTextFormField extends StatefulWidget {
     this.suffixIcon,
     this.obscureText,
     this.inputFormatters,
+    this.helperMaxLines,
+    this.errorMaxLines,
   }) : super(key: key);
   final EdgeInsets? padding;
   final String? hintText;
@@ -47,6 +49,8 @@ class CustomTextFormField extends StatefulWidget {
   final Widget? suffixIcon;
   final bool? obscureText;
   final List<TextInputFormatter>? inputFormatters;
+  final int? helperMaxLines;
+  final int? errorMaxLines;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -59,15 +63,32 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       width: 1.4,
     ),
   );
+
+  String? _helperText;
+
+  @override
+  void initState() {
+    _helperText = widget.helperText;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: widget.padding ??
-          const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 16,
-          ),
+          const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
       child: TextFormField(
+        onChanged: (value) {
+          if (value.length == 1) {
+            setState(() {
+              _helperText = null;
+            });
+          } else if (value.isEmpty) {
+            setState(() {
+              _helperText = widget.helperText;
+            });
+          }
+        },
         inputFormatters: widget.inputFormatters,
         obscureText: widget.obscureText ?? false,
         validator: widget.validator,
@@ -83,8 +104,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         enableSuggestions: widget.enableSuggestions ?? true,
         keyboardType: widget.keyboardType ?? TextInputType.none,
         decoration: InputDecoration(
+          errorMaxLines: widget.errorMaxLines ?? 3,
           suffixIcon: widget.suffixIcon,
-          helperText: widget.helperText,
+          helperMaxLines: widget.helperMaxLines ?? 3,
+          helperText: _helperText,
           helperStyle: widget.helperStyle ??
               AppTextStyles.inputText.apply(
                 color: AppColors.greenOne,
