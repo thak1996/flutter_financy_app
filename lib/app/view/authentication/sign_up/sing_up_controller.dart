@@ -4,6 +4,7 @@ import 'package:flutter_financy_app/app/view/authentication/sign_up/sing_up_stat
 
 class SingUpController extends ChangeNotifier {
   SingUpController(this._service);
+
   final AuthService _service;
 
   SignUpState _state = SingUpInitialState();
@@ -22,7 +23,7 @@ class SingUpController extends ChangeNotifier {
   }) async {
     _changeState(SingUpLoadingState());
     try {
-      _service.signUp(
+      await _service.signUp(
         name: name,
         email: email,
         password: password,

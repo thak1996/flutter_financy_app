@@ -8,5 +8,6 @@ class SingUpSucessState extends SignUpState {}
 
 class SingUpErrorState extends SignUpState {
   SingUpErrorState(this.message);
+  
   final String message;
 }

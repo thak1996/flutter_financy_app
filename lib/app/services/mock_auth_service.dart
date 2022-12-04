@@ -17,7 +17,7 @@ class MockAuthService implements AuthService {
     await Future.delayed(const Duration(seconds: 2));
     try {
       if (password.startsWith('123')) {
-        throw Exception('Senha insegura.');
+        throw Exception();
       }
       return UserModel(
         id: email.hashCode,
@@ -26,7 +26,7 @@ class MockAuthService implements AuthService {
       );
     } catch (e) {
       if (password.startsWith('123')) {
-        throw 'Senha insegura. Digite uma senha forte';
+        throw 'Senha insegura. Digite uma senha forte.';
       }
       throw 'Não foi possível criar sua conta nesse momento. Tente mais tarde.';
     }

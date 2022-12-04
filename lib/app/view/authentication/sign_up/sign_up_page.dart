@@ -27,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _controller = SingUpController(MockAuthService());
+  final SingUpController _controller = SingUpController(MockAuthService());
 
   @override
   void dispose() {
@@ -40,39 +40,40 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   void initState() {
-    _controller.addListener(() {
-      if (_controller.state is SingUpLoadingState) {
-        showDialog(
-          context: context,
-          builder: (context) => const CustomCircularProgressIndicator(),
-        );
-      }
-      if (_controller.state is SingUpSucessState) {
-        Navigator.pop(context);
-
-        /// TODO Colocar Novo local de seguimento da página
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Scaffold(
-              body: Center(
-                child: Text('Nova tela'),
+    super.initState();
+    _controller.addListener(
+      () {
+        if (_controller.state is SingUpLoadingState) {
+          showDialog(
+            context: context,
+            builder: (context) => const CustomCircularProgressIndicator(),
+          );
+        }
+        if (_controller.state is SingUpSucessState) {
+          Navigator.pop(context);
+          /// TODO: Colocar Novo local de seguimento da página
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Scaffold(
+                body: Center(
+                  child: Text('Nova tela'),
+                ),
               ),
             ),
-          ),
-        );
-      }
-      if (_controller.state is SingUpErrorState) {
-        final error = _controller.state as SingUpErrorState;
-        Navigator.pop(context);
-        customModalBottomSheet(
-          context,
-          content: error.message,
-          buttonText: "Tentar novamente",
-        );
-      }
-    });
-    super.initState();
+          );
+        }
+        if (_controller.state is SingUpErrorState) {
+          final error = _controller.state as SingUpErrorState;
+          Navigator.pop(context);
+          customModalBottomSheet(
+            context,
+            content: error.message,
+            buttonText: "Tentar novamente",
+          );
+        }
+      },
+    );
   }
 
   @override

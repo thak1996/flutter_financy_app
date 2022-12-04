@@ -9,6 +9,7 @@ Future<void> customModalBottomSheet(
   required String content,
   required String buttonText,
   VoidCallback? onPressed,
+  TextAlign? textAlign,
 }) {
   return showModalBottomSheet<void>(
     context: context,
@@ -38,6 +39,7 @@ Future<void> customModalBottomSheet(
                 horizontal: 32.0,
               ),
               child: Text(
+                textAlign: textAlign ?? TextAlign.start,
                 content,
                 style: AppTextStyles.mediumText18.copyWith(
                   color: AppColors.greenOne,
