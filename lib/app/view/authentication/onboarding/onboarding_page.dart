@@ -3,9 +3,7 @@ import 'package:flutter_financy_app/app/common/constants/app_text_styles.dart';
 import 'package:flutter_financy_app/app/common/constants/routes.dart';
 import 'package:flutter_financy_app/app/common/widgets/multi_text_button.dart';
 import 'package:flutter_financy_app/app/common/widgets/primary_button.dart';
-import 'package:flutter_financy_app/app/view/authentication/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
@@ -42,7 +40,7 @@ Container _infosOnboarding(BuildContext context) {
       children: [
         _textTitle(),
         _buttonOnboarding(context),
-        _textButton(),
+        _textButton(context),
       ],
     ),
   );
@@ -65,9 +63,9 @@ PrimaryButton _buttonOnboarding(context) {
   );
 }
 
-MultiTextButton _textButton() {
+MultiTextButton _textButton(context) {
   return MultiTextButton(
-    onPressed: () => log('button'),
+    onPressed: () => Navigator.pushNamed(context, NamedRoute.signIn),
     children: [
       Text(
         'Already Have Account? ',

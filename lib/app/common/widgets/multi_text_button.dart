@@ -19,10 +19,8 @@ class MultiTextButton extends StatelessWidget {
       padding: padding ?? const EdgeInsets.symmetric(vertical: 10),
       child: TextButton(
         style: ButtonStyle(
-          overlayColor: overlayColor ??
-              MaterialStateProperty.all(
-                Colors.transparent,
-              ),
+          overlayColor:
+              overlayColor ?? MaterialStateProperty.all(Colors.transparent),
         ),
         onPressed: onPressed,
         child: Row(

@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_financy_app/app/services/auth_service.dart';
-import 'package:flutter_financy_app/app/view/authentication/sign_up/sing_up_state.dart';
+import 'package:flutter_financy_app/app/view/authentication/sign_up/sign_up_state.dart';
 
-class SingUpController extends ChangeNotifier {
-  SingUpController(this._service);
+class SignUpController extends ChangeNotifier {
+  SignUpController(this._service);
 
   final AuthService _service;
 
-  SignUpState _state = SingUpInitialState();
+  SignUpState _state = SignUpStateInitial();
 
   SignUpState get state => _state;
 
   void _changeState(SignUpState newState) {
-    _state = newState;
+    _state = newState as SignUpStateInitial;
     notifyListeners();
   }
 
@@ -21,16 +21,16 @@ class SingUpController extends ChangeNotifier {
     required String password,
     required String name,
   }) async {
-    _changeState(SingUpLoadingState());
+    _changeState(SignUpStateLoading());
     try {
       await _service.signUp(
         name: name,
         email: email,
         password: password,
       );
-      _changeState(SingUpSucessState());
+      _changeState(SignUpStateSuccess());
     } catch (e) {
-      _changeState(SingUpErrorState(e.toString()));
+      _changeState(SignUpStateError(e.toString()));
     }
   }
 }

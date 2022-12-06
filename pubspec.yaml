@@ -25,6 +25,7 @@ flutter:
   assets:
     - assets/images/onboarding_img.png
     - assets/images/signUp.png
+    - assets/images/signIn.png
   fonts:
     - family: Inter
       fonts:
