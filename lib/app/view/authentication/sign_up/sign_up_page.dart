@@ -11,7 +11,7 @@ import 'package:flutter_financy_app/app/common/widgets/custom_text_form_field.da
 import 'package:flutter_financy_app/app/common/widgets/multi_text_button.dart';
 import 'package:flutter_financy_app/app/common/widgets/password_form_field.dart';
 import 'package:flutter_financy_app/app/common/widgets/primary_button.dart';
-import 'package:flutter_financy_app/app/services/mock_auth_service.dart';
+import 'package:flutter_financy_app/app/locator.dart';
 import 'package:flutter_financy_app/app/view/authentication/sign_up/sign_up_controller.dart';
 import 'package:flutter_financy_app/app/view/authentication/sign_up/sign_up_state.dart';
 
@@ -27,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final SignUpController _controller = SignUpController(MockAuthService());
+  final _controller = locator.get<SignUpController>();
 
   @override
   void dispose() {
@@ -194,9 +194,9 @@ Form _bodySingUp({
   );
 }
 
-MultiTextButton _footerSingUp(context) {
-  return MultiTextButton(
-    onPressed: () => Navigator.pushNamed(context, NamedRoute.signIn),
+MultTextButton _footerSingUp(context) {
+  return MultTextButton(
+    onPressed: () => Navigator.pushReplacementNamed(context, NamedRoute.signIn),
     children: [
       Text(
         'Already Have Account? ',

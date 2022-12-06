@@ -63,8 +63,8 @@ PrimaryButton _buttonOnboarding(context) {
   );
 }
 
-MultiTextButton _textButton(context) {
-  return MultiTextButton(
+MultTextButton _textButton(context) {
+  return MultTextButton(
     onPressed: () => Navigator.pushNamed(context, NamedRoute.signIn),
     children: [
       Text(

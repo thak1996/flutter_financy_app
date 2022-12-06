@@ -10,7 +10,7 @@ import 'package:flutter_financy_app/app/common/widgets/custom_text_form_field.da
 import 'package:flutter_financy_app/app/common/widgets/multi_text_button.dart';
 import 'package:flutter_financy_app/app/common/widgets/password_form_field.dart';
 import 'package:flutter_financy_app/app/common/widgets/primary_button.dart';
-import 'package:flutter_financy_app/app/services/mock_auth_service.dart';
+import 'package:flutter_financy_app/app/locator.dart';
 import 'package:flutter_financy_app/app/view/authentication/sign_in/sign_in_controller.dart';
 import 'package:flutter_financy_app/app/view/authentication/sign_in/sign_in_state.dart';
 
@@ -25,7 +25,7 @@ class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final SignInController _controller = SignInController(MockAuthService());
+  final _controller = locator.get<SignInController>();
 
   @override
   void dispose() {
@@ -48,6 +48,7 @@ class _SignInPageState extends State<SignInPage> {
         }
         if (_controller.state is SignInStateSuccess) {
           Navigator.pop(context);
+
           /// TODO: Colocar Novo local de seguimento da página
           Navigator.push(
             context,
@@ -142,6 +143,8 @@ Form _bodySingUp({
           hintText: '***********',
           validator: Validator.validatePassword,
           textInputAction: TextInputAction.next,
+          helperText:
+              'Must have at least 8 characters, 1 capital letter and 1 number.',
         ),
         PrimaryButton(
           padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -164,9 +167,9 @@ Form _bodySingUp({
   );
 }
 
-MultiTextButton _footerSingUp(context) {
-  return MultiTextButton(
-    onPressed: () => Navigator.pushNamed(context, NamedRoute.signUp),
+MultTextButton _footerSingUp(context) {
+  return MultTextButton(
+    onPressed: () => Navigator.pushReplacementNamed(context, NamedRoute.signUp),
     children: [
       Text(
         'Dont\'t Have Account? ',

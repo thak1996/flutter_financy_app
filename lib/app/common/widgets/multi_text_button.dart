@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MultiTextButton extends StatelessWidget {
-  const MultiTextButton({
+class MultTextButton extends StatelessWidget {
+  const MultTextButton({
     Key? key,
     required this.onPressed,
     required this.children,
