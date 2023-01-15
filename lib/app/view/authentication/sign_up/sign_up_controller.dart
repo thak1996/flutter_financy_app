@@ -6,15 +6,9 @@ class SignUpController extends ChangeNotifier {
   SignUpController(this._service);
 
   final AuthService _service;
-
   SignUpState _state = SignUpStateInitial();
 
   SignUpState get state => _state;
-
-  void _changeState(SignUpState newState) {
-    _state = newState as SignUpStateInitial;
-    notifyListeners();
-  }
 
   Future<void> doSignUp({
     required String email,
@@ -32,5 +26,10 @@ class SignUpController extends ChangeNotifier {
     } catch (e) {
       _changeState(SignUpStateError(e.toString()));
     }
+  }
+
+  void _changeState(SignUpState newState) {
+    _state = newState as SignUpStateInitial;
+    notifyListeners();
   }
 }

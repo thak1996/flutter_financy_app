@@ -22,10 +22,10 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   final _controller = locator.get<SignInController>();
+  final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {

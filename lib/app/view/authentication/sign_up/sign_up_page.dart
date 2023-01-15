@@ -23,11 +23,11 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _controller = locator.get<SignUpController>();
+  final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _controller = locator.get<SignUpController>();
 
   @override
   void dispose() {
