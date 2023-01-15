@@ -8,30 +8,34 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
     fontFamily: 'Inter',
   );
-  static const TextStyle mediumText = TextStyle(
-    fontSize: 36,
-    fontWeight: FontWeight.w700,
-    fontFamily: 'Inter',
-  );
-  static const TextStyle mediumText18 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-    fontFamily: 'Inter',
-  );
-  static const TextStyle smallText = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    fontFamily: 'Inter',
-  );
-  static const TextStyle inputText = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    fontFamily: 'Inter',
-  );
+
   static const TextStyle inputHintText = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     fontFamily: 'Inter',
   );
 
+  static const TextStyle inputText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+  );
+
+  static const TextStyle mediumText = TextStyle(
+    fontSize: 36,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Inter',
+  );
+
+  static const TextStyle mediumText18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter',
+  );
+
+  static const TextStyle smallText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Inter',
+  );
 }

@@ -5,8 +5,9 @@ class UserModel {
     this.email,
     this.password,
   });
+
+  final String? email;
   final int? id;
   final String? name;
-  final String? email;
   final String? password;
 }
