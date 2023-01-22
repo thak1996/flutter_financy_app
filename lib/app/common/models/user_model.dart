@@ -7,7 +7,7 @@ class UserModel {
   });
 
   final String? email;
-  final int? id;
+  final String? id;
   final String? name;
   final String? password;
 }

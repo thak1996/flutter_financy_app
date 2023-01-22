@@ -179,7 +179,7 @@ Form _bodySingUp({
             final valid = formKey.currentState != null &&
                 formKey.currentState!.validate();
             if (valid) {
-              controller.doSignUp(
+              controller.signUp(
                 name: nameController.text,
                 email: emailController.text,
                 password: passwordController.text,

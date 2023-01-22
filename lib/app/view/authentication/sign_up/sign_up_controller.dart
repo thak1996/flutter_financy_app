@@ -10,7 +10,7 @@ class SignUpController extends ChangeNotifier {
 
   SignUpState get state => _state;
 
-  Future<void> doSignUp({
+  Future<void> signUp({
     required String email,
     required String password,
     required String name,
@@ -29,7 +29,7 @@ class SignUpController extends ChangeNotifier {
   }
 
   void _changeState(SignUpState newState) {
-    _state = newState as SignUpStateInitial;
+    _state = newState;
     notifyListeners();
   }
 }
