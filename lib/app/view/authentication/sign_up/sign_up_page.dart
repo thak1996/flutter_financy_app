@@ -51,18 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
         }
         if (_controller.state is SignUpStateSuccess) {
           Navigator.pop(context);
-
-          /// TODO: Colocar Novo local de seguimento da página
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const Scaffold(
-                body: Center(
-                  child: Text('Nova tela'),
-                ),
-              ),
-            ),
-          );
+          Navigator.pushReplacementNamed(context, NamedRoute.home);
         }
         if (_controller.state is SignUpStateError) {
           final error = _controller.state as SignUpStateError;

@@ -48,18 +48,7 @@ class _SignInPageState extends State<SignInPage> {
         }
         if (_controller.state is SignInStateSuccess) {
           Navigator.pop(context);
-
-          /// TODO: Colocar Novo local de seguimento da página
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const Scaffold(
-                body: Center(
-                  child: Text('Nova tela'),
-                ),
-              ),
-            ),
-          );
+          Navigator.pushReplacementNamed(context, NamedRoute.home);
         }
         if (_controller.state is SignInStateError) {
           final error = _controller.state as SignInStateError;
