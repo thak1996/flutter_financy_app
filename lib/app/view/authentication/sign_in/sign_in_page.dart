@@ -146,6 +146,7 @@ Form _bodySingUp({
                 email: emailController.text,
                 password: passwordController.text,
               );
+              log('Sign in = Logando');
             } else {
               log('erro ao logar');
             }

@@ -173,6 +173,7 @@ Form _bodySingUp({
                 email: emailController.text,
                 password: passwordController.text,
               );
+              log('Sign up = Logando');
             } else {
               log('erro ao logar');
             }
