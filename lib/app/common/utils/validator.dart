@@ -38,7 +38,7 @@ class Validator {
 
   static String? validateConfirmPassword(
     String? passwordValue,
-    String? confirmPasswordValue,
+    String? confirmPasswordValue
   ) {
     if (passwordValue != confirmPasswordValue) {
       return "As senhas são diferentes. Por favor, corrija para continuar.";

@@ -8,7 +8,7 @@ class UpperCaseTextInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
-    TextEditingValue newValue,
+    TextEditingValue newValue
   ) {
     return TextEditingValue(
       text: newValue.text.toUpperCase(),

@@ -8,7 +8,8 @@ class UserModel {
     this.password,
   });
 
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
@@ -35,3 +36,4 @@ class UserModel {
 
   String toJson() => json.encode(toMap());
 }
+

@@ -16,7 +16,7 @@ class OnBoardingPage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         children: [
           _imageOnboarding(),
-          _infosOnboarding(context),
+          _infosOnboarding(context)
         ],
       ),
     );

@@ -28,7 +28,12 @@ class _HomePageViewState extends State<HomePageView> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
-        children: const [HomePage(), StatsPage(), WalletPage(), ProfilePage()],
+        children: const [
+          HomePage(),
+          StatsPage(),
+          WalletPage(),
+          ProfilePage(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.greenTwo,

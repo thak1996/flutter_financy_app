@@ -17,7 +17,7 @@ class _StatsPageState extends State<StatsPage>
 
   @override
   void dispose() {
-    log('disposed');
+    log('Dispose');
     super.dispose();
   }
 

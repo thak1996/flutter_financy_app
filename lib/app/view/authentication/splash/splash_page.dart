@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_financy_app/app/common/constants/app_colors.dart';
 import 'package:flutter_financy_app/app/common/constants/app_text_styles.dart';
 import 'package:flutter_financy_app/app/common/constants/routes.dart';
+import 'package:flutter_financy_app/app/common/extensions/sizes.dart';
 import 'package:flutter_financy_app/app/common/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter_financy_app/app/locator.dart';
 import 'package:flutter_financy_app/app/view/authentication/splash/splash_controle.dart';
@@ -28,6 +29,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => Sizes.init(context));
+    
     _splashController.isUserLogged();
     _splashController.addListener(
       () {
