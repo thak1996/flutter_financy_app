@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_financy_app/app/common/constants/app_colors.dart';
 import 'package:flutter_financy_app/app/common/constants/app_text_styles.dart';
 import 'package:flutter_financy_app/app/common/extensions/sizes.dart';
+import 'package:flutter_financy_app/app/common/widgets/custom_circular_progress_indicator.dart';
+import 'package:flutter_financy_app/app/locator.dart';
+import 'package:flutter_financy_app/app/view/home/home_page/home_controller.dart';
+import 'package:flutter_financy_app/app/view/home/home_page/home_state.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,6 +17,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final controller = locator.get<HomeController>();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getAllTransactions();
+  }
+
   double get textScaleFactory =>
       MediaQuery.of(context).size.width < 360 ? 0.7 : 1.0;
 
@@ -111,7 +123,7 @@ class _HomePageState extends State<HomePage> {
     return Positioned(
       left: 24.w,
       right: 24.w,
-      top: 155.h,
+      top: 160.h,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
         decoration: const BoxDecoration(
@@ -236,9 +248,9 @@ class _HomePageState extends State<HomePage> {
                                   .apply(color: AppColors.white),
                             ),
                           ],
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -251,7 +263,7 @@ class _HomePageState extends State<HomePage> {
 
   Positioned _body() {
     return Positioned(
-      top: 387.h,
+      top: 392.h,
       left: 20.w,
       right: 20.w,
       bottom: 0,
@@ -274,39 +286,62 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.zero,
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                final color =
-                    index % 2 == 0 ? AppColors.income : AppColors.outcome;
-                final value = index % 2 == 0 ? '+\$ 100,00' : '-\$ 100,00';
-                return ListTile(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                  leading: Container(
-                    decoration: const BoxDecoration(
-                      color: AppColors.antiFlashWhite,
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                    ),
-                    padding: const EdgeInsets.all(8),
-                    child: const Icon(Icons.monetization_on_outlined),
-                  ),
-                  title: const Text(
-                    'UpWork',
-                    style: AppTextStyles.mediumText16w500,
-                  ),
-                  subtitle: const Text(
-                    '1969-07-20',
-                    style: AppTextStyles.mediumText13,
-                  ),
-                  trailing: Text(
-                    value,
-                    style: AppTextStyles.mediumText18.apply(color: color),
-                  ),
-                );
-              },
-            ),
+            child: AnimatedBuilder(
+                animation: controller,
+                builder: (context, child) {
+                  if (controller.state is HomeStateLoading) {
+                    return const CustomCircularProgressIndicator(
+                      color: AppColors.greenOne,
+                    );
+                  }
+                  if (controller.state is HomeStateError) {
+                    return const Center(
+                      child: Text('An error has occurred'),
+                    );
+                  }
+                  if (controller.transactions.isEmpty) {
+                    return const Center(
+                      child: Text('There is no transactions at this time'),
+                    );
+                  }
+                  return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: controller.transactions.length,
+                    itemBuilder: (context, index) {
+                      final item = controller.transactions[index];
+                      final color = item.value.isNegative
+                          ? AppColors.outcome
+                          : AppColors.income;
+                      final value = '\$ ${item.value.toStringAsFixed(2)}';
+                      return ListTile(
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 8),
+                        leading: Container(
+                          decoration: const BoxDecoration(
+                            color: AppColors.antiFlashWhite,
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: const Icon(Icons.monetization_on_outlined),
+                        ),
+                        title: Text(
+                          item.title,
+                          style: AppTextStyles.mediumText16w500,
+                        ),
+                        subtitle: Text(
+                          DateTime.fromMillisecondsSinceEpoch(item.date)
+                              .toString(),
+                          style: AppTextStyles.mediumText13,
+                        ),
+                        trailing: Text(
+                          value,
+                          style: AppTextStyles.mediumText18.apply(color: color),
+                        ),
+                      );
+                    },
+                  );
+                }),
           )
         ],
       ),
