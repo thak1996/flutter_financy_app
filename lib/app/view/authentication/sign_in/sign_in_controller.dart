@@ -23,7 +23,6 @@ class SignInController extends ChangeNotifier {
         email: email,
         password: password,
       );
-
       if (user.id != null) {
         await secureStorage.write(key: "CURRENT_USER", value: user.toJson());
         _changeState(SignInStateSuccess());
