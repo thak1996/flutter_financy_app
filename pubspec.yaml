@@ -20,6 +20,7 @@ dependencies:
   firebase_auth: ^4.2.0
   mocktail: ^0.3.0
   flutter_secure_storage: ^7.0.1
+  cloud_functions: ^4.4.0
 
 dev_dependencies:
   flutter_test:
